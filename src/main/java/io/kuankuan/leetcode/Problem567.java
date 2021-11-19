@@ -1,5 +1,7 @@
 package io.kuankuan.leetcode;
 
+import java.util.Arrays;
+
 /**
  * 567. Permutation in String
  * <p>
@@ -12,24 +14,39 @@ package io.kuankuan.leetcode;
  */
 public class Problem567 {
 
-    // todo 未完成
+    public static boolean isSame(int[] sm, int[] pm) {
+        return Arrays.equals(sm, pm);
+    }
+
     public boolean checkInclusion(String s1, String s2) {
-        int s1L = s1.length();
-        int s2L = s2.length();
-        if (s1L > s2L) {
+        int s1l = s1.length();
+        int s2l = s2.length();
+
+        // s1 比 s2 长，没有比较的必要
+        if (s1l > s2l) {
             return false;
         }
-        int[] mark = new int[26];
-        for (char ch : s1.toCharArray()) {
-            mark[ch - 'a']++;
+
+        int[] s1Mark = new int[26];
+        int[] s2Mark = new int[26];
+
+        // 统计 s1 中每个字符出现的次数
+        for (int i = 0; i < s1l; i++) {
+            s1Mark[s1.charAt(i) - 'a']++;
         }
-        int left = 0;
-        int right = 0;
-        char[] s2Arr = s2.toCharArray();
-        while (right < s2L) {
-            while (mark[s2Arr[right] - 'a'] > 0) {
-                mark[s2Arr[right] - 'a']--;
-                right++;
+
+        // 遍历 s2
+        for (int i = 0; i < s2l; i++) {
+            // 统计 s[i] 出现的次数
+            s2Mark[s2.charAt(i) - 'a']++;
+
+            if (i >= s1l) {
+                s2Mark[s2.charAt(i - s1l) - 'a']--;
+            }
+
+            // 比较统计个数是否相同
+            if (isSame(s1Mark, s2Mark)) {
+                return true;
             }
         }
         return false;
