@@ -1,5 +1,7 @@
 package io.kuankuan.leetcode;
 
+import io.kuankuan.leetcode.model.TreeNode;
+
 /**
  * 100. Same Tree
  * <p>
@@ -24,24 +26,5 @@ public class Problem100 {
             return false;
         }
         return traverse(p.left, q.left) && traverse(p.right, q.right);
-    }
-
-    public class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode() {
-        }
-
-        TreeNode(int val) {
-            this.val = val;
-        }
-
-        TreeNode(int val, TreeNode left, TreeNode right) {
-            this.val = val;
-            this.left = left;
-            this.right = right;
-        }
     }
 }

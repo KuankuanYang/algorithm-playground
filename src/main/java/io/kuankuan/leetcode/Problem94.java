@@ -1,5 +1,7 @@
 package io.kuankuan.leetcode;
 
+import io.kuankuan.leetcode.model.TreeNode;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,25 +26,6 @@ public class Problem94 {
             traverse(node.left, res);
             res.add(node.val);
             traverse(node.right, res);
-        }
-    }
-
-    public class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode() {
-        }
-
-        TreeNode(int val) {
-            this.val = val;
-        }
-
-        TreeNode(int val, TreeNode left, TreeNode right) {
-            this.val = val;
-            this.left = left;
-            this.right = right;
         }
     }
 }
