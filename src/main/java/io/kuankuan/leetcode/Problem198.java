@@ -25,9 +25,11 @@ public class Problem198 {
         int robNext = nums[len - 1];
 
         for (int i = len - 2; i >= 0; i--) {
+            // 当前最优为：抢劫下一家，当前家+抢劫下下家，两者的最大值
             int curr = Math.max(robNext, robNextPlusOne + nums[i]);
-
+            // 下下家更新为下家
             robNextPlusOne = robNext;
+            // 下家更新为当前家
             robNext = curr;
         }
         return robNext;
